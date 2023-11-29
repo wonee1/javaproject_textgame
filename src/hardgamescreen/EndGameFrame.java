@@ -40,7 +40,7 @@ public class EndGameFrame extends JFrame {
 		setResizable(false); // 함부로 크기를 변경하지 않게.
 	}
 
-	class EndGamePanel extends JPanel {
+	class EndGamePanel extends JPanel {// 엔드게임 패널
 
 		private int score;
 		private String id;

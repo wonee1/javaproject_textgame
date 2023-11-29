@@ -1,7 +1,6 @@
 package easygamescreen;
-import java.util.Random;
+
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -29,8 +28,8 @@ public class EasyGamePanel extends JPanel {
 	private Clip lifeMinusClip; // 생명 감소
 
 	private JTextField input = new JTextField(25);
-	private JLabel timeLabel = new JLabel("Time : 2분");
-	private ImageIcon gameBackGround = new ImageIcon("resource/img/GameBackground.jpg");//게임화면 이미지 
+	private JLabel timeLabel = new JLabel("Time : 02:00");// 시간 라벨
+	private ImageIcon gameBackGround = new ImageIcon("resource/img/GameBackground.jpg");// 게임화면 이미지
 
 	private Vector<TextObject> textArr = new Vector<TextObject>(50);
 	private EasyScorePanel scorePanel = null;
@@ -96,15 +95,14 @@ public class EasyGamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Dimension d = getSize();
 		g.drawImage(gameBackGround.getImage(), 0, 0, d.width, d.height, null);
-	}//게임화면 
-	
+	}// 게임화면
 
 	private String setTime(int sec) {// 시간설정
 		int min;
 		min = sec / 60;
 		sec = sec % 60;
 		min = min % 60;
-		return "Time : " + min + "분" + sec + "초";
+		return "Time : " + min + ":" + sec;
 	}
 
 	class RainThread extends Thread { // 산성비 메소드 thread 상속
@@ -173,7 +171,7 @@ public class EasyGamePanel extends JPanel {
 	}
 
 	class TimeThread extends Thread {
-		private int time = 120; //게임 시간 2분
+		private int time = 120; // 게임 시간 2분
 
 		public int getTime() {
 			return time;
@@ -184,13 +182,12 @@ public class EasyGamePanel extends JPanel {
 				try {
 					if (Thread.interrupted()) {
 						break;
-					}
-					else if (time <= 0) {
+					} else if (time <= 0) {
 						System.out.println("Game over");
 						resetGame(); // 리셋
 						break;
 					}
-					
+
 					time--;
 					timeLabel.setText(setTime(time));
 					Thread.sleep(1000);
@@ -503,9 +500,11 @@ public class EasyGamePanel extends JPanel {
 				JTextField t = (JTextField) e.getSource();
 				String inWord = t.getText();
 				boolean correctAnswer = false; // 정답 여부를 나타내는 플래그
+
 				for (int i = 0; i < textArr.size(); i++) {
 					TextObject textTmp = (TextObject) textArr.get(i);
-					if (textTmp.getText().equals(inWord)) {//정답 맞췄을때 
+
+					if (textTmp.getText().equals(inWord)) {// 정답 맞췄을때
 						loadAnswerEffectAudio(); // 정답 맞추면 싸운드
 						Dimension d = editPanel.getSize();
 						editPanel.setCharImage(editPanel.getGraphics(), d, true);
@@ -554,6 +553,7 @@ public class EasyGamePanel extends JPanel {
 							break;
 						}
 						flag = -1; // 정답이 있었다.
+						break;// 정답을 찾았으므로 반복문 탈출
 					}
 					t.setText(""); // 맞추든 틀리든 지워준다.
 				} // End for
@@ -562,7 +562,17 @@ public class EasyGamePanel extends JPanel {
 					loadWrongAnswerEffectAudio();
 					Dimension d = editPanel.getSize();
 					editPanel.setCharImage(editPanel.getGraphics(), d, false);
+
+					EasyGamePanel.this.repaint();
+					LifeIcon icon = (LifeIcon) lifeIcons.get(life - 1);
+					icon.setText("");
+					lifeIcons.remove(icon);
+					System.out.println("life 감소.");
+					life--;
+					loadLifeEffectAudio();
+
 				}
+				t.setText(""); // 맞추든 틀리든 지워준다.
 				flag = 0;// 다시 0으로
 			}
 		});

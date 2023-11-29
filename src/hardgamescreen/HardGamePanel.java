@@ -548,6 +548,7 @@ public class HardGamePanel extends JPanel {
 							break;
 						}
 						flag = -1; // 정답이 있었다.
+						break;
 					}
 					t.setText(""); // 맞추든 틀리든 지워준다.
 				} // End for
@@ -556,7 +557,16 @@ public class HardGamePanel extends JPanel {
 					loadWrongAnswerEffectAudio();
 					Dimension d = editPanel.getSize();
 					editPanel.setCharImage(editPanel.getGraphics(), d, false);
+
+					HardGamePanel.this.repaint();
+					LifeIcon icon = (LifeIcon) lifeIcons.get(life - 1);
+					icon.setText("");
+					lifeIcons.remove(icon);
+					System.out.println("life 감소.");
+					life--;
+					loadLifeEffectAudio();
 				}
+				t.setText("");
 				flag = 0;// 다시 0으로
 			}
 		});

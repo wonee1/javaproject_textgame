@@ -11,8 +11,6 @@ import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Font;
-import java.awt.Font;
 
 public class FirstPanel extends JPanel {
 	private JLabel titleLabel = new JLabel("수룡이 타자 게임");
@@ -72,7 +70,7 @@ public class FirstPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				GameStartLabel.setFont(changeFont);
-				GameStartLabel.setForeground(Color.BLUE);
+				GameStartLabel.setForeground(Color.RED);
 			}
 
 			@Override
@@ -92,7 +90,7 @@ public class FirstPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				GameInfo.setFont(changeFont);
-				GameInfo.setForeground(Color.BLUE);
+				GameInfo.setForeground(Color.RED);
 			}
 
 			@Override

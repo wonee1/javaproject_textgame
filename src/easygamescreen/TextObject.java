@@ -8,7 +8,7 @@ class TextObject extends JLabel {// 능력설정
 	private String name;
 	private int number;
 	private int ability; // , 2 = ability 1 , 3 = ability 2 , 4 = ability 3
-	private Font font = new Font("한컴 말랑말랑 Regular", Font.PLAIN, 12);
+	private Font font = new Font("한컴 말랑말랑 Regular", Font.PLAIN, 15);
 
 	private int x = (int) (Math.random() * 480) + 10; // 첫 위치값 랜덤하게 준다.
 	private int y = 5; // 기본 y값
