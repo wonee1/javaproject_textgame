@@ -8,11 +8,21 @@
 
 **참여한 내용**
 -피버타임기능 구현
+
+
 -editPanel 구현 (표정변화기능 구현)
+
+
 -이지/하드모드 선택 구현
+
+
 -(EasyHardselectFrame.java, EditPanel.java, AddTextFrame.java, TextObject.java, TextSource.java, GamePanel.java의 text부분과 feverTime부분)
+
+
 - MediatorPanel.java, GamePanel.java의 life(생명) 부분과 lifeItem 부분, InformationFrame.java
 -기타 오류 수정
+
+
 
 
 
